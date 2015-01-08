@@ -1,4 +1,4 @@
-// Generated on 2015-01-07 using generator-webapp 0.4.9
+// Generated on 2014-12-19 using generator-webapp 0.4.9
 'use strict';
 
 // # Globbing
@@ -293,6 +293,13 @@ module.exports = function (grunt) {
 
         // Copies remaining files to places other tasks can use
         copy: {
+            svg: {
+                expand: true,
+                dot: true,
+                cwd: '<%= config.app %>/images',
+                dest: '<%= config.dist %>/images/',
+                src: '{,*/}*.svg'
+            },
             dist: {
                 files: [{
                     expand: true,
@@ -335,14 +342,26 @@ module.exports = function (grunt) {
             ],
             dist: [
                 'coffee',
-                'copy:styles',
-                'imagemin',
-                'svgmin'
+                'copy:styles'
             ]
+        },
+        buildcontrol: {
+          options: {
+            dir: 'dist',
+            commit: true,
+            push: true,
+            message: 'Built from %sourceCommit% on branch %sourceBranch%'
+          },
+          pages: {
+            options: {
+              remote: 'git@github.com:schreiaj/2015_ranking_sim.git',
+              branch: 'gh-pages'
+            }
+          }
         }
     });
 
-
+    grunt.registerTask('deploy', 'Deploy to Github Pages', ['build', 'buildcontrol']);
     grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -386,7 +405,7 @@ module.exports = function (grunt) {
         'cssmin',
         'uglify',
         'copy:dist',
-        'rev',
+        // 'rev',
         'usemin',
         'htmlmin'
     ]);
