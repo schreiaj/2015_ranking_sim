@@ -1,0 +1,12 @@
+{
+  "name": "2015-ranking-anim",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.0.3",
+    "jquery": "~1.11.0",
+    "jstat": "~1.1.1",
+    "d3": "~3.5.3",
+    "numeral": "~1.5.3"
+  },
+  "devDependencies": {}
+}
