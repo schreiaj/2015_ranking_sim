@@ -60,7 +60,7 @@ teams.sort((a,b) -> a.skill-b.skill)
 # d3.select(".container").append("ul").selectAll("li").data(teams).enter().append("li").text((d) ->d.number + "-" + numeral(d.skill).format('0.0'))
 
 
-d3.text("/scripts/schedules/#{numTeams}_#{matches}.csv", (data)->
+d3.text("/schedules/#{numTeams}_#{matches}.csv", (data)->
     scheduleTemplate = d3.csv.parseRows(data)
     window.schedule = []
     # initial ranking is optimal
